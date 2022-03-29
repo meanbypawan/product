@@ -6,9 +6,9 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://mean:mean%23345@cluster0.dkefj.mongodb.net/productapp?retryWrites=true&w=majority");
 var indexRouter = require('./routes/index');
-
+const cors = require('cors');
 var app = express();
-
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

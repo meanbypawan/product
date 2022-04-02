@@ -4,6 +4,14 @@ const Category = require('../model/category');
 // http://localhost:3000/category/add-categort
 // request-{categoryName: ''}
 const tokenVerification = require('../middleware/token_verification');
+router.get("/category-list",tokenVerification.verifyToken,(request,response)=>{
+  Category.find()
+  .then(result=>{
+      return response.status(200).json(result);
+  }).catch(err=>{
+      return response.status(500).json({error: 'Internal Server Error'});
+  });
+});
 router.post('/add-category',tokenVerification.verifyToken,(request,response,next)=>{
   Category.create({
       categoryName: request.body.categoryName
